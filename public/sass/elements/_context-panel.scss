@@ -1,0 +1,43 @@
+.context-panel {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    font-family: CaviarDreams;
+    color: #fff;
+    align-items: center;
+
+    // .context-panel__title
+
+    &__title {
+        font-size: 18px;
+    }
+
+    // .context-panel__right
+
+    &__right {
+        display: flex;
+        align-items: center;
+    }
+
+    &__arrows {
+        display: flex;
+        margin-left: 20px;
+    }
+
+    &__arrow_prev {
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 415px) {
+    .context-panel {
+    
+        &__title {
+            font-size: 4vw;
+        }
+
+        &__arrows {
+            margin-left: 10px;
+        }
+    }
+}

@@ -1,0 +1,104 @@
+const input_left=document.querySelector("#input-left");
+const input_right=document.querySelector("#input-right");
+
+const thumbLeft=document.querySelector(".slider > .thumb.left");
+const thumbRight=document.querySelector(".slider > .thumb.right");
+const range=document.querySelector(".slider > .range");
+
+function setLeftValue(){
+  let _this=input_left,
+    min=parseInt(_this.min),
+    max=parseInt(_this.max);
+
+  _this.value=Math.min(parseInt(_this.value),parseInt(input_right.value-1));
+
+  let persent=((_this.value-min)/(max-min))*100;
+
+  thumbLeft.style.left=persent+"%";
+  range.style.left=persent+"%";
+  
+  thumbLeft.querySelector("span").innerHTML=input_left.value;
+}
+function setRightValue(){
+  let _this=input_right,
+    min=parseInt(_this.min),
+    max=parseInt(_this.max);
+
+  _this.value=Math.max(parseInt(_this.value),parseInt(input_left.value)+1);
+
+  let persent=((_this.value-min)/(max-min))*100;
+
+  thumbRight.style.right=(100-persent)+"%";
+  range.style.right=(100-persent)+"%";
+
+  thumbRight.querySelector("span").innerHTML=input_right.value;
+}
+
+input_left.addEventListener("input",setLeftValue);
+input_right.addEventListener("input",setRightValue);
+
+
+const manga_pages=document.querySelectorAll("#manga_pages > div");
+const card_img=document.querySelectorAll(".mang_img");
+
+  manga_pages.forEach((elem,index)=>{
+    let id=Math.floor(index/3);
+    const src_card=card_img[id].src;
+    elem.addEventListener("mouseover",()=>{
+      card_img[id].src=elem.querySelector("img").src;
+    })
+
+    elem.addEventListener("mouseleave",()=>{
+      card_img[id].src=src_card;
+    })
+  })
+
+//$(document).ready(function(){
+  $("#search_text").keyup(function () {
+    let search_all=$("#search_text").val();
+    let type_search=$("#search_type").val();
+    let link="../";
+    
+    if(search_all != ""){
+      $.ajax({
+        url:"../files/real_search.php",
+        type:"POST",
+        dataType:'text',
+        data:{
+          search_all:search_all,
+          type_search:type_search,
+          link:link
+        },
+        success: function(res){
+          $("#search_result").html(res);
+        }
+      })
+    }else{
+      $("#search_result").html("");
+    }
+
+  })
+
+  $(".mult_select").chosen({width:"100%"});
+//})
+
+const submit_clean=document.querySelector("#submit-clean");
+
+submit_clean.addEventListener("click",()=>{
+  thumbLeft.style.left=0;
+  range.style.left=0;
+
+  input_left.value=input_left.min;
+  thumbLeft.querySelector("span").innerHTML=input_left.value;
+  thumbLeft.querySelector("input").value=input_left.value;
+  
+  thumbRight.style.right=0;
+  range.style.right=0;
+  
+  input_right.value=input_right.max;
+  thumbRight.querySelector("span").innerHTML=input_right.value;
+  thumbRight.querySelector("input").value=input_right.value;
+  $(".mult_select").val('').trigger("chosen:updated");
+})
+
+

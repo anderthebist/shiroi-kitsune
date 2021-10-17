@@ -1,0 +1,1 @@
+Смена пароля <a href={{ route("reset_password",["token" => $token]) }}>{{ route("reset_password",["token" => $token]) }}</a>

@@ -1,0 +1,28 @@
+@import "./style";
+@import "./elements/action_bar";
+@import "./elements/context-panel";
+
+.regulation-block {
+    font-family: CaviarDreams;
+    color: lightgrey;
+    line-height: 22px;
+
+    h4 {
+        color: white;
+        margin-top: 10px;
+        font-size: 1.05em;
+    }
+
+    p {
+        margin-bottom: 3px;
+    }
+
+    ol {
+        margin: 10px 0 10px 20px;
+        padding: 0;
+
+        li {
+            margin-bottom: 3px;
+        }
+    }
+}

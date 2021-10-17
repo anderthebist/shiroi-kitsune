@@ -1,0 +1,1 @@
+//$(".multi-select").chosen({width:"100%"});

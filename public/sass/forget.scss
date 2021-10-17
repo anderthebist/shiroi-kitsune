@@ -1,0 +1,10 @@
+@import "./style";
+@import "./elements/action_bar";
+
+.main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}

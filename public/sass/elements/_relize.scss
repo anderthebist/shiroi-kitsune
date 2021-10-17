@@ -1,0 +1,242 @@
+@import "./favorite";
+
+.relize-slider{
+    width: calc(100% + 30px);
+    margin-right: -30px;
+    transition: all .5s ease-in-out;
+    margin-bottom: 10px;
+
+    .relize {
+        width: 20%;
+        height: auto;
+    }
+
+    .swiper-lazy-preloader{
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.relize {
+    padding: 7.5px 7.5px 15px 7.5px;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all .4s ease-in-out;
+
+    &:hover{
+        background: $green;
+        cursor: pointer;
+
+        .relize__descript {
+            opacity: 1;
+        }
+    }
+    // .relize__image
+
+    &__image {
+        position: relative;
+        padding-bottom: 135%;
+        overflow: hidden;
+        border-radius: 7px;
+        background: #0D0E12;
+        margin-bottom: 10px;
+
+        img{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            object-fit: cover;
+        }
+    }
+
+    // .relize__descript
+
+    &__descript {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0,0,0,.4);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        opacity: 0;
+        transition: all .4s ease-in-out;
+    }
+
+    // .relize__top
+
+    &__top {
+        justify-content: right;
+        padding: 10px;
+    }
+
+    .favorite {
+        margin-left: auto;
+    }
+
+    // .relize__share
+
+    // .relize__play
+
+    &__play {
+        width: 55px;
+        height:55px;
+        position: absolute;
+        left:50%;
+        top:50%;
+        transform: translate(-50%,-50%);
+    }
+
+    // .relize__play-img
+
+    &__play-img {
+    }
+
+    // .relize__bottom
+
+    &__bottom {
+        background: rgba(21,24,29,.7);
+        justify-content: space-between;
+        font-family: AkzidenzGroteskPro-Cn;
+        font-size: 15px;
+        color: #fff;
+        padding: 15px;
+    }
+
+    &__top,&__bottom {
+        width: 100%;
+        display: flex;
+        box-sizing: border-box;
+    }
+
+    // .relize__serias
+
+    &__serias {
+    }
+
+    // .relize__serias-count
+
+    &__mark,&__serias-count {
+        color: #5CCC2A;
+    }
+
+    // .relize__mark
+
+    &__mark {
+        display: flex;
+        align-items: center;
+    }
+
+    &__mark-star {
+        width: 15px;
+        height: 100%;
+        position: relative;
+        margin-left: 10px;
+
+        img {
+            max-width: 15px;
+            height: 100%;
+            position: absolute;
+            
+        }
+    }
+
+    // .relize__start
+
+    &__start {
+        position: relative;
+        width: 16px;
+        height: 16px;
+        margin-left: 5px;
+    }
+
+    // .relize__title
+
+    &__title {
+        height: 100%;
+        color: #fff;
+        font-family: AkzidenzGroteskPro-Cn;
+        font-size: 19px;
+        line-height: 16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        div{
+            text-align: center;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; 
+            -webkit-box-orient: vertical;
+        }
+    }
+}
+
+@media (max-width: 1100px) {
+    .relize-slider .relize {
+        width: 25%;
+    }
+
+    .relize__title {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 992px) {
+    .relize__title {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .relize-slider {
+        .relize {
+            width: 27%;
+        
+        }
+    }
+}
+
+@media (max-width: 468px) {
+    .relize-slider {
+        .relize {
+            width: 43%;
+        }
+    }
+
+    .relize {
+    
+        .relize__share, .favorite__like {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+
+@media (max-width: 415px) {
+    .relize-slider {
+        .relize {
+            width: 45%;
+        }
+    }
+    .relize__title {
+        font-size: 4.8vw;
+    }
+}
+
+@media (max-width: 365px) {
+    .relize {
+        &:hover{
+            background: inherit;
+            cursor: pointer;
+    
+            .relize__descript {
+                opacity: 0;
+            }
+        }
+    }
+}

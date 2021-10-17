@@ -1,0 +1,15 @@
+.favorite {
+    cursor: pointer;
+
+    .favorite__like {
+        position: relative;
+        width: 25px;
+        height: 25px;
+        object-fit: contain;
+        display: none;
+
+        &_active {
+            display: block;
+        }
+    }
+}

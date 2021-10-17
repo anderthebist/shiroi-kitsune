@@ -1,0 +1,331 @@
+@import "./style";
+@import "./elements/action_bar";
+@import "./elements/favorite";
+
+.main {
+    padding: 0;
+}
+
+.back-img {
+    width: calc(100% - 280px);
+    height: 100%;
+    position: fixed;
+    left:280px;
+    top:0;
+    z-index: 20;
+
+    img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top:0;
+        object-fit: cover;
+    }
+}
+
+.left-content {
+    width: 700px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background: rgba(0,0,0,.85);
+    position: relative;
+    z-index: 30;
+    padding: 20px 25px;
+    font-family: CaviarDreams;
+    color: #fff;
+}
+
+.show-search {
+    width: 400px;
+    max-width: 100%;
+    margin-bottom: 30px;
+
+    .search__input {
+        background: rgba(255,255,255,0.2);
+    }
+}
+
+.relize-logo {
+    &__image {
+        max-height: 130px;
+        max-width: 350px;
+    }
+}
+
+.feedback {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 5px;
+
+    // .feedback__mark
+
+    &__mark {
+    }
+
+    // .feedback__like
+
+    &__like {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-self: center;
+        align-items: center;
+        border-radius: 50%;
+        padding: 10px;
+        background: rgba(22,21,29,.8);
+        box-sizing: border-box;
+
+        .favorite__like {
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+
+.rating {
+    display: flex;
+    align-items: center;
+    font-size: 45px;
+    line-height: .75;
+
+    // .raiting__body
+    &__body {
+        position: relative;
+        color: #fff;
+    }
+
+    // .raiting__active
+    &__active {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top:0;
+        left:0;
+        overflow: hidden;
+        
+
+        &::before {
+            content: "★★★★★";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top:0;
+            color: $red;
+        }
+    }
+
+    // .raiting__list
+    &__list {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        position: absolute;
+        top:50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+
+    // .raiting__item
+    &__item {
+        width: 20%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    // .raiting__value
+    &__value {
+        margin: 5px 0 0 10px;
+        font-size: 50%;
+        line-height: 1;
+    }
+
+    &_hidden {
+        display: none;
+    }
+}
+
+.rating-preloader {
+    display: none;
+}
+
+.rating_hidden ~ .rating-preloader {
+    display: block;
+}
+
+.relize-parametrs {
+    margin: 30px 0;
+    font-family: CaviarDreams-Bold;
+    // .relize-parametrs__item
+
+    &__item {
+        color: #B51F26;
+        margin-bottom: 15px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    // .relize-parametrs__name
+
+    &__name {
+        color: #fff;
+    }
+
+    // .relize-parametrs__link
+
+    &__link {
+        display: inline-block;
+        border-bottom: 1px solid #B51F26;
+        margin-top: 5px;
+    }
+}
+
+.relize-description {
+    line-height: 23px;
+    margin-bottom: 50px;
+}
+
+.relize-authors {
+    padding: 15px;
+    border-radius: 15px;
+    background: rgba(22,21,29,.9);
+    box-sizing: border-box;
+    // .relize-authors__role
+
+    &__role {
+    }
+
+    // .relize-authors__author
+
+    &__author {
+        color: $red;
+        display: inline-block;
+        border-bottom: 1px solid $red;
+        margin-top: 5px;
+    }
+}
+
+.right-content {
+    width: calc(100vw - (280px + 700px));
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top:0;
+    right: 0;
+    z-index: 25;
+}
+
+.play {
+    cursor: pointer;
+
+    img {
+        height: 10.5vw;
+        width: 10.5vw; 
+        animation: scales 1s ease-in-out 0s infinite alternate; 
+    }
+}
+
+@keyframes scales {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.04);
+    }
+}
+
+@media (max-width: 1440px) {
+    .main {
+        padding-top: 30vh;
+    }
+    .left-content {
+        width: 100%;
+        height: auto;
+        min-height: 70vh;
+        padding-bottom: 50px;
+        font-size: 17px;
+    }
+    .right-content {
+        width: 100%;
+        height: 30vh;
+        position: absolute;
+        left: 0;
+    }
+    .play {
+        img {
+            height: 110px;
+            width: 110px; 
+        }
+    }
+}
+@media (max-width: 992px) {
+    .back-img {
+        width: 100%;
+        left:0;
+    }
+    .show-search {
+        display: none;
+    }
+    .rating {
+        font-size: 50px;
+    }
+    .play {
+        img {
+            height: 90px;
+            width: 90px; 
+        }
+    }
+}
+@media (max-width: 768px) {
+    .relize-logo {
+        &__image {
+            max-height: 110px;
+            max-width: 320px;
+        }
+        &__title {
+            font-size: 25px;
+            margin: 5px 0;
+        }
+    }
+}
+@media (max-width: 468px) {
+    .left-content {
+        padding: 20px 15px 50px 15px;
+    }
+    .relize-logo {
+        &__image {
+            max-height: 100px;
+            max-width: 80%;
+        }
+    }
+    .relize-parametrs {
+        margin: 20px 0;
+    }
+    .relize-description {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 415px) {
+    .left-content {
+        font-size: 4.5vw;
+    }
+    .rating {
+        font-size: 48px;
+    }
+}
+@media (max-width: 360px) {
+    .rating {
+        font-size: 48px;
+    }
+    
+}
