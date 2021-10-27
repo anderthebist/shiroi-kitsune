@@ -1,0 +1,49 @@
+@import "./res/fonts";
+@import "./res/colors";
+
+body {
+    font-family: CaviarDreams;
+    color: lightgray;
+}
+
+.navbar {
+    background: $dark;
+    border-color: #4b545c;
+}
+
+.nav-link {
+    color: lightgray;
+
+    &:hover {
+        color: $red;
+    }
+}
+
+.content-wrapper {
+    background: $dark_blue;
+}
+
+.aside_admin {
+    background: #1e1e1e;
+}
+
+.mult_select {
+    width: 100%;
+}
+
+.chosen-container-multi .chosen-choices {
+    padding: 6px 12px;
+    font-size: 16px;
+}
+
+textarea {
+    width: 100%;
+    min-width: 100%;
+    min-height: 100px;
+    max-height: 250px;
+}
+
+.is-invalid {
+    border: 2px solid red;
+    box-sizing: border-box;
+}

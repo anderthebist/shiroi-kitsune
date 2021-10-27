@@ -7,7 +7,11 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
 {
-    public function create(User $user, User $checkUser) {
+    public function update(User $user, User $checkUser) {
         return $user->id === $checkUser->id;
+    }
+
+    public function admin(User $user) {
+        return $user->status === "админ";
     }
 }

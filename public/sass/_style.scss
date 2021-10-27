@@ -335,9 +335,15 @@ img {
     }
 
     &__content {
+        width: 500px;
         opacity: 0;
         transform: translateY(-20%);
         transition: opacity .3s .2s ease-in-out, transform .3s .2s ease-in-out;
+        border-radius: 5px;
+        font-family: CaviarDreams;
+        background: #1e1e1e;
+        overflow: hidden;
+        color: #fff;
     }
 }
 
@@ -411,6 +417,13 @@ img {
     }
 }
 
+@media (max-width: 500px) {
+    .modal {
+        &__content {
+            width: 410px;
+        }
+    }
+}
 
 @media (max-width:468px) {
     .btn{
@@ -422,6 +435,11 @@ img {
 }
 
 @media (max-width: 415px) {
+    .modal {
+        &__content {
+            width: 95vw;
+        }
+    }
     .arrow {
         width: 32px;
         height: 32px;

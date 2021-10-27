@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const newSlide = (data) => {
         return `<div class="team-slider__slide swiper-slide" data-id="${data.id}" data-name="${data.name}" data-history="${data.id}">
             <div class="team-slider__image-container">
-                <img class="team-slider__image" src="${ data.image || "https://www.spletnik.ru/img/__post/a9/a9a0d0d3aff547006a6cff51b1093a88_137.jpg"}" alt="">
+                <img class="team-slider__image" src="${voiceImage(data.image)}" alt="">
             </div>
             <div class="team-slider__content">
                 <h2 class="team-slider__title">${data.name}</h2>
@@ -170,13 +170,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
             <div class="head-slider__preloader swiper-lazy-preloader"></div>
         </div>`
     }
+
+    const voiceImage = (image) => {
+        return image ? `${APP_PATH}/images/voicers/${image}` : `${APP_PATH}/images/users/default-user-image.png`;
+    }
     
     function createSeria(data) {
         return `
         <div class="serias-block__item" data-id = "${data.id}">
             <a href="/relizes/${data.original_title}">
                 <div class = "serias-block__image-container">
-                    <img class="serias-block__image lazy" data-src="https://shiroikitsune.ru/${data.image}" oncontextmenu="return false;" src="images/5x5.png" alt="">
+                    <img class="serias-block__image lazy" data-src="${APP_PATH}/images/animes/${data.image}" oncontextmenu="return false;" src="images/5x5.png" alt="">
                     <div class="preloader"><div class="preloader__block">
                         <div class="preloader__spin"></div>
                         </div>

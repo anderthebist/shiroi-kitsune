@@ -1,6 +1,6 @@
 <aside class="action-bar" id = "action_bar">
     <div class="action-bar__logo">
-        <img class="logo" src= {{ asset("/images/logo.png") }} alt="">
+        <img class="logo" src= {{ asset("/images/assets/logo.png") }} alt="">
     </div>
     <div class="action-bar__user-block">
         @auth('web')
@@ -10,7 +10,7 @@
             <div class="user">
                 <div class="user__contain">
                     <div class="user__avatar">
-                        <img src={{$user->image ? asset($user->image) : asset("/images/default-user-image.png")}} id="action_user-image" class="user__avatar-img" alt="">
+                        <img src={{$user->image ? asset("/images/users/".$user->image) : asset("/images/users/default-user-image.png")}} id="action_user-image" class="user__avatar-img" alt="">
                     </div>
                 </div>
             </div>
@@ -33,6 +33,11 @@
     <div class="action-bar__menu">
         <div class="action-bar__list">
             <ul>
+                @can('admin', App\Models\User::class)
+                    <a href="{{ route("admin.index") }}">
+                        <li class= "action-bar__item">Админ панель</li>
+                    </a>
+                @endcan
                 @foreach ($menu as $item)
                     <a href={{ route($item['route']) }}>
                         <li class= "action-bar__item @if($item["active"]) action-bar__item_active @endif">{{$item['title']}}</li>
@@ -44,13 +49,13 @@
 
         <div class="action-bar__social-links">
             <div class="action-bar__link">
-                <img src= {{ asset("/images/vk-logo.png") }} alt="">
+                <img src= {{ asset("/images/assets/vk-logo.png") }} alt="">
             </div>
             <div class="action-bar__link">
-                <img src= {{ asset("/images/tik-tok-logo.png") }} alt="">
+                <img src= {{ asset("/images/assets/tik-tok-logo.png") }} alt="">
             </div>
             <div class="action-bar__link">
-                <img src={{ asset("/images/youtube-logo.png") }} alt="">
+                <img src={{ asset("/images/assets/youtube-logo.png") }} alt="">
             </div>
         </div>
     </div>
@@ -143,7 +148,7 @@
                 <i class="navbar__humburger humburger"></i>
             </button>
             <div class="navbar__logo-container">
-                <img class="navbar__logo" src="{{ asset("/images/nav_logo.png") }}" alt="">
+                <img class="navbar__logo" src="{{ asset("/images/assets/nav_logo.png") }}" alt="">
             </div>
         </div>
         <div class="navbar__right">

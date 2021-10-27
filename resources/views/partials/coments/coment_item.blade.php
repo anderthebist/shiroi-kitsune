@@ -4,7 +4,7 @@
 <div class="coment" data-id = "{{ $comment->id }}">
     <a href="{{route("users.show", ["user"=> $user->name])}}">
         <div class="coment__container-img">
-            <img class="coment__image" src="{{ $user->image ? asset($user->image) : asset("/images/default-user-image.png") }}" alt="">
+            <img class="coment__image" src="{{ $user->image ? asset("/images/users/".$user->image) : asset("/images/users/default-user-image.png") }}" alt="">
         </div>
     </a>
 

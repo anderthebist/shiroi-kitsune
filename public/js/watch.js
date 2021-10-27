@@ -253,7 +253,7 @@ function newComent(data) {
     <div class="coment" data-id = "${data.id}">
         <a href="${APP_PATH}/users/${data.username}">
             <div class="coment__container-img">
-                <img class="coment__image" src="${getUserImagePath(data.image)}" alt="">
+                <img class="coment__image" src="${getUserImagePath(`/images/users/${data.image}`)}" alt="">
             </div>
         </a>
 

@@ -17,7 +17,7 @@
 
 @section('content')
     <div class="back-img">
-        <img src="{{ $relize->poster }}" alt="">
+        <img src="{{ asset("/images/animes/".$relize->poster) }}" alt="">
     </div>
     <input type="hidden" id = "anime_id" value = "{{ $relize->id }}">
     <main class="main">

@@ -176,11 +176,7 @@
 }
 
 .auth-block {
-    width: 500px;
-    border-radius: 5px;
-    font-family: CaviarDreams;
     background: #181818;
-    overflow: hidden;
     // .auth-block__panel
 
     // .auth-block__item
@@ -497,7 +493,6 @@
 
 @media (max-width: 500px) {
     .auth-block {
-        width: 410px;
 
         &__form {
             padding: 15px;
@@ -539,7 +534,6 @@
         }
     }
     .auth-block {
-        width: 95vw;
 
         &__form {
             padding: 15px 10px;

@@ -11,7 +11,8 @@
         </a>
     </div>
     <div class="news__image-container">
-        <img class="news__image lazy" oncontextmenu="return false;" data-src={{"https://shiroikitsune.ru/".$news->image}} src="images/5x5.png" alt="">
+        <img class="news__image lazy" oncontextmenu="return false;" data-src={{ asset("/images/news/".$news->image) }} 
+        src="{{ asset("/images/assets/5x5.png") }}" alt="">
         <div class="preloader"><div class="preloader__block">
             <div class="preloader__spin"></div>
             </div>

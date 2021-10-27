@@ -8,9 +8,13 @@ use App\Models\Anime;
 use App\Models\Category;
 use App\Models\Voice;
 use App\Models\Studio;
+use App\Models\User;
 use App\Services\MarkService;
 use App\Services\AnimeService;
 use App\Http\Filters\AnimeFilter;
+use App\Http\Requests\AnimeCreateRequest;
+use App\Http\Requests\AnimeUpdateRequest;
+use App\Services\ImageService;
 
 class AnimeController extends Controller
 {
@@ -32,6 +36,14 @@ class AnimeController extends Controller
         ]);
     }
 
+    public function admin(Request $request) {
+        $relizes = Anime:: orderBy('created_at','desc')->paginate(8);
+
+        return view("admin.anime.index", [
+            "relizes" => $relizes
+        ]);
+    }
+
     public function search(SearchRequest $request, AnimeService $animeService) {
         $relizes = $animeService->search($request->value)->take(4)->get();
         return response()->json(["resultCode"=> 0,'relizes' => $relizes]);
@@ -44,7 +56,15 @@ class AnimeController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category:: orderBy('name')->get();
+        $voices = Voice:: orderBy('name')->get();
+        $studios = Studio:: orderBy('name')->get();
+        
+        return view("admin.anime.create", [
+            "categories" => $categories,
+            "voices"=> $voices,
+            "studios"=> $studios,
+        ]);
     }
 
     /**
@@ -53,9 +73,12 @@ class AnimeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AnimeCreateRequest $request, AnimeService $animeService)
     {
-        
+        $this->authorize('admin', User::class);
+        $anime = $animeService->create($request);
+
+        return redirect()->route('relizes.show', ['relize'=> $anime->original_title]);
     }
 
     /**
@@ -95,7 +118,17 @@ class AnimeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $relize = Anime:: where('id', $id)->first();
+        $categories = Category:: orderBy('name')->get();
+        $voices = Voice:: orderBy('name')->get();
+        $studios = Studio:: orderBy('name')->get();
+        
+        return view("admin.anime.edit", [
+            "relize" => $relize,
+            "categories" => $categories,
+            "voices"=> $voices,
+            "studios"=> $studios,
+        ]);
     }
 
     /**
@@ -105,10 +138,13 @@ class AnimeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AnimeUpdateRequest $request, $id, AnimeService $animeService)
     {
-        //
-    }
+        $this->authorize('admin', User::class);
+        $updating = $animeService->update($request, $id);
+
+        return redirect()->route('relizes.show', ['relize'=> $updating->original_title]);
+    }   
 
     /**
      * Remove the specified resource from storage.
@@ -116,8 +152,10 @@ class AnimeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, AnimeService $animeService)
     {
-        //
+        $this->authorize('admin', User::class);
+        $animeService->delete($id);
+        return redirect()->back();
     }
 }

@@ -17,7 +17,7 @@
         <div class="news-content">
             <div class="news-content__body">
                 <div class="news-content__image-ontainer">
-                    <img class="news-content__image" src="{{"https://shiroikitsune.ru/".$news->image}}" alt="{{ $news->title }}">
+                    <img class="news-content__image" src="{{ asset("/images/news/".$news->image) }}" alt="{{ $news->title }}">
                 </div>
                 <div class="news-content__text">
                     {!! $news->text !!}

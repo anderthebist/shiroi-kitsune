@@ -176,6 +176,14 @@
     }
 }
 
+@media (hover: none) {
+    .relize {
+        &__descript {
+            display: none;
+        }
+    }
+}
+
 @media (max-width: 1100px) {
     .relize-slider .relize {
         width: 25%;

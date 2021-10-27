@@ -10,6 +10,9 @@ use App\Http\Controllers\ComentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\MarkController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\StudiosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,13 +42,29 @@ Route:: get("/regulations", function () {
 })->name("regulations");
 Route::post('/relizes/search', [AnimeController:: class, 'search']);
 
+Route:: prefix('admin')->middleware(["admin"])->group(function () {
+    Route:: get("/", [AdminController::class, 'index'])->name("admin.index");
+    Route:: get("/anime", [AnimeController::class, 'admin'])->name("anime.admin");
+    Route:: get("/anime/create", [AnimeController::class, 'create'])->name("anime.create");
+    Route:: get("/anime/edit/{id}", [AnimeController::class, 'edit'])->name("anime.edit");
+    Route:: get("/news", [NewsController::class, 'admin'])->name("news.admin");
+    Route:: get("/news/create", [NewsController::class, 'create'])->name("news.create");
+    Route:: get("/news/edit/{id}", [NewsController::class, 'edit'])->name("news.edit");
+    Route:: get("/team", [TeamController:: class, 'admin'])->name("team.admin");
+    Route:: get("/team/create", [TeamController::class, 'create'])->name("team.create");
+    Route:: get("/team/edit/{id}", [TeamController::class, 'edit'])->name("team.edit");
+    Route::resource('categories', CategoryController::class);
+    Route::resource('studios', StudiosController::class);
+});
+
 Route:: get("/relizes/watch/{name}", [AnimeController:: class, 'watch'])->name("watch");
 Route::resource('relizes', AnimeController::class);
-Route::resource('news', NewsController::class);
+
+Route::resource('news', NewsController::class)->except(["create"]);
 
 Route::get('/team/{id?}/{page?}', [TeamController:: class, 'index'])->name("team.index");
 Route::resource('team', TeamController::class)->except([
-    'index'
+    'index', 'create', 'edit'
 ]);
 Route:: post("/team_process", [TeamController:: class, 'team_process'])->name("team_process");
 Route:: post("/team_next", [TeamController:: class, 'next'])->name("team_next");
@@ -67,5 +86,6 @@ Route:: prefix('marks')->group(function () {
 
 Route:: prefix('users')->group(function () {
     Route:: post("/upload_image", [UserController:: class, 'upload'])->name("users.upload");
+    Route:: post("/edit_name", [UserController:: class, 'changeName'])->name("users.edit_name");
 });
 Route::resource('users', UserController::class);

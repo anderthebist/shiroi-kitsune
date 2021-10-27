@@ -15,7 +15,7 @@
 @section('content')
     <main class="main">
         <div class="back-img">
-            <img src="{{ $relize->poster }}" alt="">
+            <img src="{{ asset('/images/animes/'.$relize->poster) }}" alt="">
         </div>
         <div class="left-content">
             <form action="{{ route("relizes.index") }}" method="GET" class="show-search search">
@@ -31,7 +31,7 @@
 
             <div class="relize-logo">
                 @if ($relize->logo)
-                    <img class="relize-logo__image" src="{{ asset($relize->logo) }}" alt="">
+                    <img class="relize-logo__image" src="{{ asset("/images/animes/".$relize->logo) }}" alt="">
                 @else
                     <h1 class="relize-logo__title">{{ $relize->title }}</h1>
                 @endif
@@ -125,7 +125,7 @@
             <div class="right-content">
                 <a href="{{ route('watch', ["name"=> $relize->original_title]) }}">
                     <div class="play">
-                        <img src="{{ asset("/images/b2c60a34-f2ab-4c0e-b99b-127919b2c01e.png") }}" alt="">
+                        <img src="{{ asset("/images/assets/b2c60a34-f2ab-4c0e-b99b-127919b2c01e.png") }}" alt="">
                     </div>
                 </a>
             </div>

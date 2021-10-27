@@ -399,6 +399,7 @@ img {
 }
 
 .modal__content {
+  width: 500px;
   opacity: 0;
   -webkit-transform: translateY(-20%);
           transform: translateY(-20%);
@@ -406,6 +407,11 @@ img {
   transition: opacity .3s .2s ease-in-out, -webkit-transform .3s .2s ease-in-out;
   transition: opacity .3s .2s ease-in-out, transform .3s .2s ease-in-out;
   transition: opacity .3s .2s ease-in-out, transform .3s .2s ease-in-out, -webkit-transform .3s .2s ease-in-out;
+  border-radius: 5px;
+  font-family: CaviarDreams;
+  background: #1e1e1e;
+  overflow: hidden;
+  color: #fff;
 }
 
 @-webkit-keyframes load {
@@ -504,6 +510,12 @@ img {
   }
 }
 
+@media (max-width: 500px) {
+  .modal__content {
+    width: 410px;
+  }
+}
+
 @media (max-width: 468px) {
   .btn {
     font-size: .9em;
@@ -514,6 +526,9 @@ img {
 }
 
 @media (max-width: 415px) {
+  .modal__content {
+    width: 95vw;
+  }
   .arrow {
     width: 32px;
     height: 32px;
@@ -689,11 +704,7 @@ img {
 }
 
 .auth-block {
-  width: 500px;
-  border-radius: 5px;
-  font-family: CaviarDreams;
   background: #181818;
-  overflow: hidden;
 }
 
 .auth-block__item {
@@ -1002,9 +1013,6 @@ img {
 }
 
 @media (max-width: 500px) {
-  .auth-block {
-    width: 410px;
-  }
   .auth-block__form {
     padding: 15px;
   }
@@ -1036,9 +1044,6 @@ img {
   }
   .action-bar .search {
     margin-bottom: 10px;
-  }
-  .auth-block {
-    width: 95vw;
   }
   .auth-block__form {
     padding: 15px 10px;

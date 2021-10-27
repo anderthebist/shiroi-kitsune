@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Voice extends Model
 {
     protected $table = 'voices';
+    protected $guarded = [];
 
     public function animes() {
         return $this->belongsToMany(

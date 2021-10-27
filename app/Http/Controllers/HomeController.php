@@ -15,7 +15,7 @@ class HomeController extends Controller
         $count = 6;
         $relizes = Anime:: orderBy('created_at','desc')->take(14)->get();
         $new_serias = Anime:: orderBy('last_video','desc')->take($count)->get();
-        $header = Anime:: whereNotNull('poster')->take(4)->get();
+        $header = Anime:: whereNotNull('poster')->orderBy('created_at','desc')->take(4)->get();
 
         $news = News:: orderBy('created_at','desc')->take(2)->get();
 

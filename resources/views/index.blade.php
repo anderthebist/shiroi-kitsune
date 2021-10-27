@@ -12,7 +12,7 @@
 @endpush
 
 @push('scripts')
-<script src= {{ asset("/js/favorite.js") }}></script>
+    <script src= {{ asset("/js/favorite.js") }}></script>
     <script src= {{ asset("/js/index.js") }}></script>
 @endpush
 
@@ -34,11 +34,13 @@
                 <div class="head-slider__wrapper swiper-wrapper">
                     @foreach ($header as $head)
                         <div class="head-slider__slide swiper-slide">
-                            <img class="head-slider__image swiper-lazy" data-src="{{ asset($head->poster) }}" src="images/5x5.png" alt="">
+                            <img class="head-slider__image swiper-lazy" data-src="{{ asset('/images/animes/'.$head->poster) }}" 
+                            src="{{ asset("/images/assets/5x5.png") }}" alt="">
                             <div class="head-slider__descript">
                                 <div class="head-slider__logo-container">
                                 @if ($head->logo)
-                                    <img class="head-slider__logo" src="{{ asset($head->logo) }}" oncontextmenu="return false;" alt="">
+                                    <img class="head-slider__logo" src="{{ asset('/images/animes/'.$head->logo) }}" 
+                                    oncontextmenu="return false;" alt="">
                                 @else
                                     <h2 class="head-slider__title">{{ $head->title }}</h2>   
                                 @endif

@@ -22,8 +22,8 @@
                 @foreach ($voicers as $r => $voicer)
                     <div class="team-slider__slide swiper-slide" data-id={{$voicer->id}} data-name={{$voicer->name}} data-history={{$voicer->id}}>
                         <div class="team-slider__image-container"> 
-                            <img class="team-slider__image" src="@if($voicer->image) 
-                            {{ $voicer->image }} @else https://www.spletnik.ru/img/__post/a9/a9a0d0d3aff547006a6cff51b1093a88_137.jpg  @endif" alt="">
+                            <img class="team-slider__image" src="{{$voicer->image ? asset("/images/voicers/".$voicer->image) 
+                            : asset("/images/users/default-user-image.png")}}" alt="">
                         </div>
                         <div class="team-slider__content">
                             <h2 class="team-slider__title">{{$voicer->name}}</h2>
@@ -46,10 +46,10 @@
                 @endforeach
             </div>
             <button class="team-slider__arrows team-slider__arrows-prev">
-                <img class="team-slider__arrow-icon" src= "{{ asset("/images/team_arrow_left.png") }}" alt="">
+                <img class="team-slider__arrow-icon" src= "{{ asset("/images/assets/team_arrow_left.png") }}" alt="">
             </button>
             <button class="team-slider__arrows team-slider__arrows-next">
-                <img class="team-slider__arrow-icon" src= "{{ asset("/images/team_arrow_right.png") }}" alt="">
+                <img class="team-slider__arrow-icon" src= "{{ asset("/images/assets/team_arrow_right.png") }}" alt="">
             </button>
         </div>
 

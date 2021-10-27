@@ -195,12 +195,6 @@
 }
 
 .predelete-alert {
-    width: 500px;
-    border-radius: 5px;
-    font-family: CaviarDreams;
-    background: #1e1e1e;
-    overflow: hidden;
-    color: #fff;
 
     &__header {
         width: 100%;
@@ -396,7 +390,6 @@
 
 @media (max-width: 500px) {
     .predelete-alert {
-        width: 410px;
     
         &__header {
             padding: 15px;
@@ -423,10 +416,6 @@
         .swiper-slide {
             width: 55px;
         }
-    }
-
-    .predelete-alert {
-        width: 95vw;
     }
 
     .coment {

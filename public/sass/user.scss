@@ -1,7 +1,7 @@
 @import "./style";
 @import "./elements/action_bar";
 @import "./elements/context-panel";
-@import "./elements/serias_block";
+@import "./elements/relize";
 
 .main {
     display: flex;
@@ -12,6 +12,8 @@
 .profile {
     width: 43%;
     background: #000;
+    position: relative;
+    z-index: 30;
 
     // .profile__image
 
@@ -159,6 +161,67 @@
 
     &__body {
         font-size: 15px;
+    }
+}
+
+.edit-alert {
+    width: 420px;
+    padding: 15px 25px 25px 15px;
+
+    &__title {
+        color: $red;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    &__field {
+        width: 100%;
+    }
+
+    &__btn {
+        font-size: 1em;
+        margin: 0px auto;
+        padding: .5em 5em;
+        display: block;
+
+        &_hidden {
+            display: none;
+        }
+    }
+
+    &__preloader {
+        display: none;
+        margin: 0px auto;
+    }
+
+    &__btn_hidden ~ &__preloader{
+        display: block;
+    }
+
+    &__error {
+        font-weight: 700;
+        color: #c02127;
+        padding-left: 12px;
+        margin-bottom: 5px;
+    }
+}
+
+.favorites {
+    width: 56%;
+    position: relative;
+    padding: calc(60px - 15px) 30px 0 30px;
+    z-index: 20;
+
+    .context-panel {
+        margin-bottom: 30px;
+
+        &__title {
+            font-size: 25px;
+        }
+    }
+
+    .relize {
+        width: 37%;
     }
 }
 

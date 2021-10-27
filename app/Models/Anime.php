@@ -12,11 +12,7 @@ use App\Scopes\LicenseScope;
 class Anime extends Model
 {
     protected $table = 'anime';
-    protected $fillable = [
-        'mark',
-        'title',
-        'original_title'
-    ];
+    protected $guarded = [];
 
     public function videos() {
         return $this->hasMany('App\Models\Videos')->orderBy('created_at');

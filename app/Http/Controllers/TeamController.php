@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\TeamProcessrRquest;
+use App\Http\Requests\TeamCreateRequest;
+use App\Http\Requests\TeamUpdateRequest;
 use App\Models\Anime;
 use App\Models\Voice;
 use App\Services\VoiceService;
@@ -59,6 +61,14 @@ class TeamController extends Controller
         return response()->json(["resultCode"=> 0,'voicers' => $voicers]);
     }
 
+    public function admin() {
+        $voicers = Voice:: orderBy('created_at','desc')->paginate(8);
+
+        return view("admin.team.index", [
+            "voicers" => $voicers
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -66,7 +76,7 @@ class TeamController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.team.create");
     }
 
     /**
@@ -75,9 +85,12 @@ class TeamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TeamCreateRequest $request, VoiceService $voiceService)
     {
-        //
+        $this->authorize('admin', User::class);
+        $voice = $voiceService->create($request);
+
+        return redirect()->route('team.index', ['id'=> $voice->id]);
     }
 
     /**
@@ -99,7 +112,11 @@ class TeamController extends Controller
      */
     public function edit($id)
     {
-        //
+        $voice = Voice:: where('id', $id)->first();
+
+        return view("admin.team.edit", [
+            "voice" => $voice
+        ]);
     }
 
     /**
@@ -109,9 +126,11 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TeamUpdateRequest $request, $id, VoiceService $voiceService)
     {
-        //
+        $this->authorize('admin', User::class);
+        $voice = $voiceService->update($request, $id);
+        return redirect()->route('team.index', ['id'=> $voice->id]);
     }
 
     /**
@@ -120,8 +139,10 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, VoiceService $voiceService)
     {
-        //
+        $this->authorize('admin', User::class);
+        $voiceService->delete($id);
+        return redirect()->back();
     }
 }

@@ -6,13 +6,6 @@
     <link rel="stylesheet" href = {{ asset("/css/anime.css") }}>
 @endpush
 
-@push('libs')
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
-    <link rel="stylesheet" href= {{ asset("/libs/chosen/chosen.min.css") }}>
-    <script src= {{ asset("/libs/chosen/chosen.jquery.min.js") }}></script>
-@endpush
-
 @push('scripts')
     <script src= {{ asset("/js/select.js") }}></script>
     <script src= {{ asset("/js/anime.js") }}></script>

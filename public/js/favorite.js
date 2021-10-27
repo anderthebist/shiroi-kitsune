@@ -3,6 +3,7 @@ const favorites = document.querySelectorAll(".favorite");
 favorites.forEach((favorite) => {
     favorite.addEventListener("click", async (event) => {
         try {
+            event.preventDefault();
             if(!favorite.dataset.id) return;
 
             const isFav = favorite.dataset.fav;

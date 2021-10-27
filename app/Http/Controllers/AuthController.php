@@ -41,7 +41,7 @@ class AuthController extends Controller
 
     public function register(Request $request, AuthService $authService) {
         $validator = Validator::make($request->all(),[
-            'name' => ['required', 'string', 'min:4', 'max:12', 'unique:users,name'],
+            'name' => ['required', 'string', 'min:4', 'max:16', 'unique:users,name'],
             'email' => ['required','email', 'string', 'unique:users,email'],
             'password' => ['required','min:7', 'max:18','confirmed']
             ], 
@@ -49,7 +49,7 @@ class AuthController extends Controller
                 'name.required' => "Заполните имя",
                 'name.string' => "Имя пользователя должно быть в виде строки",
                 'name.min' => "Имя должно содержаться не менее 4 и не более 12 символов",
-                'name.max' => "Имя должно содержаться не менее 4 и не более 12 символов",
+                'name.max' => "Имя должно содержаться не менее 4 и не более 16 символов",
                 'name.unique' => "Пользователь с таким именем уже существует",
                 'email.required' => "Заполните email адресс",
                 'email.email' => "Введенный вами email не является валидным",

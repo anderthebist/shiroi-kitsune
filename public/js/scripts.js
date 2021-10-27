@@ -81,11 +81,10 @@ search.forEach((elem) => {
             searchList.innerHTML = "";
             if(elem.value.length < 3) return ; 
             const searchData = {
-                _token: token,
                 value: elem.value
             }
             const relizes = await searchRelize(searchData);
-            console.log(relizes);
+
             if(relizes && relizes.length > 0) {
                 let result = "";
                 relizes.forEach((relize) => {
@@ -113,7 +112,7 @@ const searchItem = (id,image,title, original,description) => {
     return `<a href = "/relizes/${original}">
         <div class="search__item" data-id = "${id}">
             <div class="search__image-container">
-                <img class="search__image" src="https://shiroikitsune.ru/${image}" alt="">
+                <img class="search__image" src="${APP_PATH}/images/animes/${image}" alt="">
             </div>
             <div class="search__body">
                 <div class="search__title">${title}</div>

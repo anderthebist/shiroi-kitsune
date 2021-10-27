@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\UploadImageRequest;
 use App\Services\ImageService;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -16,7 +17,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User:: orderBy('created_at','desc')->paginate(15);
+        return view("admin.users.index", [
+            "users"=> $users
+        ]);
     }
 
     /**
@@ -53,14 +57,40 @@ class UserController extends Controller
 
     public function upload(UploadImageRequest $request, ImageService $imageService) {
         $user = auth()->user();
+        $this->authorize('update', $user);
         
-        $image = $imageService->upload($request->image, 'users_image');
-        $imageService->delete($user->image);
+        $image = $imageService->upload($request->image, 'images/users');
+        $imageService->delete('/images/users/'.$user->image);
 
         $user->image = $image;
         $user->save();
 
         return response()->json(["resultCode"=> 0,'image' => $image]);
+    }
+
+    public function changeName(Request $request) {
+        $user = auth()->user();
+        $this->authorize('update', $user);
+
+        $validator = Validator::make($request->all(),[
+            'name' => ['required', 'string', 'min:4', 'max:16', 'unique:users,name']
+            ], 
+            [
+                'name.required' => "Заполните имя",
+                'name.string' => "Имя пользователя должно быть в виде строки",
+                'name.min' => "Имя должно содержаться не менее 4 и не более 12 символов",
+                'name.max' => "Имя должно содержаться не менее 4 и не более 16 символов",
+                'name.unique' => "Пользователь с таким именем уже существует",
+        ]);
+
+        if (!$validator->passes()) {
+            return response()->json(["resultCode"=> 1,'errors'=> $validator->errors()->all()]);
+        }
+
+        $user->name = $request->name;
+        $user->save();
+
+        return response()->json(["resultCode"=> 0,'name' => $request->name]);
     }
 
     /**
