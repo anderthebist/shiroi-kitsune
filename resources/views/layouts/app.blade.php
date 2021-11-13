@@ -20,6 +20,7 @@
         </div>
     </div>
 
+    <script src = {{ asset("/js/config.js") }}></script>
     <script src = {{ asset("/js/scripts.js") }}></script>
     <script src= {{ asset("/js/api.js") }}></script>
     <script src= {{ asset("/js/action_bar.js") }}></script>

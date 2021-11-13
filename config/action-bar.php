@@ -7,7 +7,7 @@ return [
     ],
     [
         "title"=> "Релизы",
-        "route"=> "relizes.index"
+        "route"=> "releases.index"
     ],
     [
         "title"=> "Новости",
@@ -15,7 +15,7 @@ return [
     ],
     [
         "title"=> "Правила",
-        "route"=> "regulations"
+        "route"=> "rules"
     ],
     [
         "title"=> "Наша команда",

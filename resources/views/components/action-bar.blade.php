@@ -45,18 +45,26 @@
                 @endforeach
             </ul>
         </div>
-        <button class="action-bar__btn btn">Поддержать&nbspпроект</button>
+        <a href="https://www.donationalerts.com/r/shiroikitsune" target="_blank">
+            <button class="action-bar__btn btn">Поддержать&nbspпроект</button>
+        </a>
 
         <div class="action-bar__social-links">
-            <div class="action-bar__link">
-                <img src= {{ asset("/images/assets/vk-logo.png") }} alt="">
-            </div>
-            <div class="action-bar__link">
-                <img src= {{ asset("/images/assets/tik-tok-logo.png") }} alt="">
-            </div>
-            <div class="action-bar__link">
-                <img src={{ asset("/images/assets/youtube-logo.png") }} alt="">
-            </div>
+            <a href="https://vk.com/shiroi_kitsune" target="_blank">
+                <div class="action-bar__link">
+                    <img src= {{ asset("/images/assets/vk-logo.png") }} alt="">
+                </div>
+            </a>
+            <a href="https://www.youtube.com/channel/UCrDTOgIDkk9Lqynpj220WfQ" target="_blank">
+                <div class="action-bar__link">
+                    <img src={{ asset("/images/assets/youtube-logo.png") }} alt="">
+                </div>
+            </a>
+            <a href="https://discord.gg/ZxkcwkNUXf" target="_blank">
+                <div class="action-bar__link">
+                    <img src= {{ asset("/images/assets/discord.png") }} alt="">
+                </div>
+            </a>
         </div>
     </div>
 </aside>
@@ -147,9 +155,11 @@
             <button class="navbar__menu-btn menu-btn" id = "nav_btn">
                 <i class="navbar__humburger humburger"></i>
             </button>
-            <div class="navbar__logo-container">
-                <img class="navbar__logo" src="{{ asset("/images/assets/nav_logo.png") }}" alt="">
-            </div>
+            <a href="{{ route("index") }}">
+                <div class="navbar__logo-container">
+                    <img class="navbar__logo" src="{{ asset("/images/assets/nav_logo.png") }}" alt="">
+                </div>
+            </a>
         </div>
         <div class="navbar__right">
             <button class="navbar__menu-btn" id = "nav_search_btn">
@@ -166,7 +176,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
         </button>
-        <form action="{{ route("relizes.index") }}" method="GET" class="navbar__search search">
+        <form action="{{ route("releases.index") }}" method="GET" class="navbar__search search">
             <button class="navbar__search-btn search__btn">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="h-8 w-8" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />

@@ -2,7 +2,7 @@
     <?php 
         $link_name = $relize->original_title;    
     ?>
-    <a href="{{ route('relizes.show', ['relize'=> $link_name]) }}">
+    <a href="{{ route('releases.show', ['release'=> $link_name]) }}">
         <div class="relize__image">
             <img class="swiper-lazy" oncontextmenu="return false;" data-src={{ asset('/images/animes/'.$relize->image) }} 
             src="{{ asset("/images/assets/5x5.png") }}" alt={{$relize->title}}>
@@ -39,7 +39,7 @@
     </a>
         
     <div class="relize__title">
-        <a href="{{ route('relizes.show', ['relize'=> $link_name]) }}">
+        <a href="{{ route('releases.show', ['release'=> $link_name]) }}">
             <div>{{$relize->title}}</div>
         </a>
     </div>

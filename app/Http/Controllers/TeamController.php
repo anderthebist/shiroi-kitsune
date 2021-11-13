@@ -20,16 +20,20 @@ class TeamController extends Controller
      */
     public function index($id = null, VoiceService $voiceService)
     {
-        $count = 6;
+        /*
+        $count = 20;
         $voice = null;
         if(empty($id)) {
-            $voicers = Voice:: orderBy('name')->take($count)->get();
+            $voicers = Voice:: orderBy('name')->get();
             $voice = $voicers[0];
         } else {
             $voice = Voice:: where('id', $id)->first();
-            $voicers = $voicers = $voiceService->both($voice, $count);;
+            $voicers = $voicers = $voiceService->both($voice, $count);
         }
-        $new_serias = $voice->animes()->paginate(6);
+        $new_serias = $voice->animes()->orderBy('created_at', 'desc')->paginate(6);*/
+        $voicers = Voice:: orderBy('name')->get();
+        $voice = empty($id) ? $voicers[0] : Voice:: where('id', $id)->first();
+        $new_serias = $voice->animes()->orderBy('created_at', 'desc')->paginate(6);
 
         return view("comand", [
             "voicers" => $voicers,
@@ -40,7 +44,7 @@ class TeamController extends Controller
 
     public function team_process(TeamProcessrRquest $request) {
         $voice = Voice:: where('id', $request->id)->first();
-        $pagin = $voice->animes()->paginate(6);
+        $pagin = $voice->animes()->orderBy('created_at', 'desc')->paginate(6);
         $relizes = $pagin->items();
         $pagination = $pagin->links()->paginator;
 

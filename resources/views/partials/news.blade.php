@@ -2,13 +2,15 @@
     <div class="news__descript">
         <h3 class="news__title">{{$news->title}}</h3>
         <p class="news__text">
-            {!! $news->text !!}
+            {!! strip_tags($news->text) !!}
         </p>
-        <a href="{{ route("news.show", ["news"=> $news->id]) }}">
-            <button class="news__btn btn">
-                Узнать&nbsp;больше
-            </button>
-        </a>
+        <div class="news__btn-container">
+            <a href="{{ route("news.show", ["news"=> $news->id]) }}">
+                <button class="news__btn btn">
+                    Узнать&nbsp;больше
+                </button>
+            </a>
+        </div>
     </div>
     <div class="news__image-container">
         <img class="news__image lazy" oncontextmenu="return false;" data-src={{ asset("/images/news/".$news->image) }} 

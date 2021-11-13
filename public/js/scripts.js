@@ -20,8 +20,8 @@ const outClick = (event,classElements ,callback) => {
     }
 }
 
-function getUserImagePath(uri) {
-    return `${APP_PATH}${uri}`;
+function getAssetPath(uri) {
+    return `${APP_ASSETS_PATH}${uri}`;
 }
 
 // Lazy loading
@@ -109,10 +109,10 @@ document.addEventListener("click", (event) => {
 })
 
 const searchItem = (id,image,title, original,description) => {
-    return `<a href = "/relizes/${original}">
+    return `<a href = "/releases/${original}">
         <div class="search__item" data-id = "${id}">
             <div class="search__image-container">
-                <img class="search__image" src="${APP_PATH}/images/animes/${image}" alt="">
+                <img class="search__image" src="${getAssetPath(`/images/animes/${image}`)}" alt="">
             </div>
             <div class="search__body">
                 <div class="search__title">${title}</div>
@@ -125,6 +125,6 @@ const searchItem = (id,image,title, original,description) => {
 }
 
 const searchRelize = async (data) => {
-    const relizeData = await instance.post(`/relizes/search`, data);
+    const relizeData = await instance.post(`/releases/search`, data);
     return relizeData.relizes;
 }

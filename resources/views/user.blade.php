@@ -19,16 +19,31 @@
 @section('content')
     <main class="main">
         <div class="profile">
-            <div class="profile__image-container">
+            <div class="profile__image-container @can('update', $user) profile__image-container_with-own @endcan">
                 <img class="profile__image" id = "profile_image" src="{{ $user->image ? asset("/images/users/".$user->image) 
                 : asset("/images/users/default-user-image.png") }}" alt="">
+                @can('update', $user)
+                    <div class="profile__upload-image">
+                        <input type="file" class="profile__file" name="upload_image" id="upload_image">
+                        <img src="{{ asset("/images/assets/upload-icon.png") }}" class="profile__upload-icon" alt="">
+                    </div>
+                @endcan
             </div>
-            @can('update', $user)
-                <div class="profile__upload-image">
-                    <input type="file" class="profile__file" name="upload_image" id="upload_image">
-                    <img src="{{ asset("/images/assets/upload-icon.png") }}" class="profile__upload-icon" alt="">
+
+            <div class="modal" id="message_image_alert">
+                <div class="alert">
+                    <h2 class="auth-block__title">
+                        Ошибка загрузки
+                    </h2>
+                    <p id="message_image"></p>
+                    <div style="text-align: center;margin-top: 15px">
+                        <button class="btn" id="message_image_btn">
+                            Ок
+                        </button>
+                    </div>
                 </div>
-            @endcan
+            </div>
+
             <div class="profile__info">
                 <div class="profile__name">
                     <span id="user_name">
@@ -70,20 +85,20 @@
                         </span>
                     </div>
                     <div class="profile__item"> 
-                        Дата регистрация:
+                        Дата регистрации:
                         <span>
                             {{ $user->created_at->format('d.m.Y') }}
                         </span>
                     </div>
                     <div class="profile__item"> 
-                        Коментарии:
+                        Комментарии:
                         <span>
                             {{ count($comments) }}
                         </span>
                     </div>
                 </div>
-
-                @if (count($comments) > 0)
+            </div>
+            @if (count($comments) > 0)
                     <?php 
                         $last = $comments[count($comments) - 1];
                     ?>
@@ -109,7 +124,6 @@
                         </div>
                     </div>  
                 @endif
-            </div>
         </div>
 
         <div class="favorites">
@@ -117,26 +131,16 @@
                 <div class="context-panel__title">
                     <h3>Избранное</h3>
                 </div>
-                <div class = "context-panel__right">
-                    <div class="context-panel__arrows relize-arrows">
-                        <div class="arrow context-panel__arrow_prev">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                            </svg>
-                        </div>
-                        <div class="arrow context-panel__arrow_next">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div class="relize-slider swiper-container">
-                <div class="swiper-wrapper">
-                    @each('partials.relize', $user->favorites, 'relize')
-                </div>
-            </div>
+    
+            <div class="serias-block">
+                @each('partials.seria', $favorites, 'seria')
+            </div> 
+
+            @include('partials.pagination', [
+                "items"=> $favorites,
+                "route"=> 'relizes.index'
+            ])
         </div>
     </main>
 @endsection

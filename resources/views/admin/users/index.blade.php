@@ -10,7 +10,7 @@
     <section class="content admin_content pb-3">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="table-container col-sm-12">
                     <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                         <thead>
                             <tr>

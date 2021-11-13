@@ -63,10 +63,19 @@ class AnimeService {
         foreach($images as $image) {
             $imageService->delete($this->imagesPath.'/'.$image);
         }
+        $anime->videos()->delete();
         $anime->delete();
     }
 
+    public function set_last_video($anime_id, $last = null) {
+        $anime = Anime:: where('id', $anime_id)->first();
+        $anime->last_video = $last;
+        $anime->save();
+
+        return $anime;
+    }
+
     public function search($title = "") {
-        return Anime:: query()->where('title', 'LIKE', "%{$title}%")->orWhere('original_title', 'LIKE', "%{$title}%");
+        return Anime:: query()->where('title', 'LIKE', "%{$title}%")->orWhere('original_title', 'LIKE', "%{$title}%")->orderBy('created_at','desc');
     }
 }

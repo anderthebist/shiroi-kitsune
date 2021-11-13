@@ -34,12 +34,13 @@ img {
 
 .wrapper{
     overflow: hidden;
+    padding-left: 280px;
 }
 
 .content{
     min-height: calc(100vh - 55px);
-    width: calc(100% - 280px);
-    margin-left: 280px;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .main{
@@ -58,7 +59,11 @@ img {
     color: white;
     border-radius: 100px;
     cursor: pointer;
-    font-family: CaviarDreams;
+    font-family: CaviarDreams-Bold;
+
+    &__icon {
+        width: 11px;
+    }
 }
 
 .input {
@@ -402,10 +407,27 @@ img {
     }
 }
 
+.alert {
+    background: #181818;
+    width: 500px;
+    font-family: CaviarDreams;
+    border-radius: 5px;
+    padding: 15px 25px 25px;
+    box-sizing: border-box;
+}
+
+@media (min-width: 1921px) {
+    .content {
+        width: 90%;
+        margin: 0px auto;
+    }
+}
 
 @media (max-width: 992px) {
+    .wrapper {
+        padding-left: 0;
+    }
     .content {
-        margin-left: 0;
         width: 100%;
         padding-top: 55px;
     }
@@ -431,6 +453,9 @@ img {
     }
     .main {
         padding: .6vw 3vw 5vw 3vw;
+    }
+    .alert {
+        width: 90vw;
     }
 }
 

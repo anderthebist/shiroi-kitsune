@@ -15,10 +15,14 @@
 @section('content')
     <main class="main">
         <div class="back-img">
-            <img src="{{ asset('/images/animes/'.$relize->poster) }}" alt="">
+            <img class="lazy" data-src="{{ asset('/images/animes/'.$relize->poster) }}" src="{{ asset("/images/assets/5x5.png") }}" alt="">
+            <div class="preloader"><div class="preloader__block">
+                <div class="preloader__spin"></div>
+                </div>
+            </div>
         </div>
         <div class="left-content">
-            <form action="{{ route("relizes.index") }}" method="GET" class="show-search search">
+            <form action="{{ route("releases.index") }}" method="GET" class="show-search search">
                 <button class="search__btn">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="h-8 w-8" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -39,18 +43,27 @@
 
             <div class="feedback">
                 <div class="feedback__mark">
-                    <div class="rating" data-anime="{{ $relize->id }}" 
-                    @cannot('create', [App\Models\Mark::class, $relize->id]) data-marked="{{true}}" @endcannot>
-                        <div class="rating__body">
-                            <div>★★★★★</div>    
-                            <div class="rating__active"></div>
-                            <div class="rating__list">
-                                <?php
-                                    for($i = 1;$i<6;$i++) {
-                                ?>
-                                <input class="rating__item" type="radio" name = "raiting" value = "{{$i}}">
-                                <?php } ?>
+                    <div class="rating" data-anime="{{ $relize->id }}"
+                        @cannot('create', [App\Models\Mark::class, $relize->id]) data-marked="{{true}}" @endcannot>
+
+                        <div>
+                            <div class="rating__body">
+                                <div>★★★★★</div>    
+                                <div class="rating__active"></div>
+                                <div class="rating__list">
+                                    <?php
+                                        for($i = 1;$i<6;$i++) {
+                                    ?>
+                                    <input class="rating__item" type="radio" name = "raiting" value = "{{$i}}">
+                                    <?php } ?>
+                                </div>
                             </div>
+                            <div class="rating__user">
+                                @if ($ownMark)
+                                    Ваша оценка: <span class="rating__user-own">{{ $ownMark->mark }}</span>
+                                @endif
+                            </div>
+                                                    
                         </div>
                         <div class="rating__value">{{ round($relize->mark, 1) }}</div>
                     </div>
@@ -70,19 +83,28 @@
                 @endauth
             </div>
 
+            @can('admin', App\Models\User::class)
+                <div style="margin-top:20px">
+                    <a href="{{ route("anime.edit", ["id" => $relize->id]) }}">
+                        <button class="btn">
+                            Редактировать
+                        </button>
+                    </a>
+                </div>
+            @endcan
+
             <div class="relize-parametrs">
                 <div class="relize-parametrs__item">
                     <span class="relize-parametrs__name">Жанры:</span>
                     @foreach ($relize->categories as $index=> $category)
-                        <a class="relize-parametrs__link" href="{{ route("relizes.index", ["categories"=>[$category->name] ]) }}">
+                        <a class="relize-parametrs__link" href="{{ route("releases.index", ["categories"=>[$category->name] ]) }}">
                             {{ $category->name }}     
-                        </a>
-                        @if ((count($relize->categories) - 1) !== $index) <span>&#44;</span> @endif
+                        </a>@if ((count($relize->categories) - 1) !== $index)<span class="сomma">&#44;</span>@endif
                     @endforeach
                 </div>
                 <div class="relize-parametrs__item">
                     <span class="relize-parametrs__name">Студия:</span>
-                    <a class="relize-parametrs__link" href="{{ route("relizes.index", ["studios"=>[$relize->studio->name] ]) }}">
+                    <a class="relize-parametrs__link" href="{{ route("releases.index", ["studios"=>[$relize->studio->name] ]) }}">
                         {{ $relize->studio->name }}
                     </a>
                 </div>
@@ -102,10 +124,18 @@
                     <span class="relize-parametrs__name">Страна:</span>
                     {{ $relize->contry }}
                 </div>
+                <div class="relize-parametrs__item">
+                    <span class="relize-parametrs__name">Перевод:</span>
+                    {{ $relize->transfer }}
+                </div>
+                <div class="relize-parametrs__item">
+                    <span class="relize-parametrs__name">Работа со звуком:</span>
+                    {{ $relize->timing }}
+                </div>
             </div>
-
+            
             <div class="relize-description">
-                {{ $relize->description }}
+                {!! nl2br($relize->description) !!}
             </div>
 
             <div class="relize-authors">
@@ -115,8 +145,7 @@
                 @foreach ($relize->voices as $index=> $voice)
                     <a class="relize-authors__author" href="{{ route("team.index", ["id"=> $voice->id]) }}">
                         {{ $voice->name }}
-                    </a>
-                    @if ((count($relize->voices) - 1) !== $index) <span>&#44;</span> @endif
+                    </a>@if ((count($relize->voices) - 1) !== $index)<span class="сomma">&#44;</span>@endif
                 @endforeach
             </div>
         </div>

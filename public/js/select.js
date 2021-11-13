@@ -11,8 +11,10 @@ selects.forEach((select, index) => {
     if(!contnent && !dropdown && !input) return;
 
     contnent.addEventListener("click", () => {
+        const isActivated = !contnent.classList.contains("select__content_active");
+
         clearDrops();
-        dropdown.classList.add("select__dropdown_active");
+        if(isActivated) contnent.classList.add("select__content_active");
     })
 
     const dropdownItems = dropdown.querySelectorAll(".select__dropdown-item");
@@ -29,6 +31,7 @@ selects.forEach((select, index) => {
     })
 
     const dropdownCheck = select.querySelectorAll(".select__dropdown-check");
+    changePlaveholder();
 
     dropdownCheck.forEach((check) => {
         check.addEventListener("click", () => {
@@ -64,5 +67,5 @@ document.addEventListener("click", (event) => {
 })
 
 function clearDrops() {
-    dropdowns.forEach((elem) => elem.classList.remove("select__dropdown_active"));
+    contnents.forEach((contnent) => contnent.classList.remove("select__content_active"));
 }

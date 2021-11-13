@@ -108,6 +108,7 @@
 
     &__description {
         margin-top: 1vw;
+        line-height: 22px;
         font-size: 1vw;
         color: #939393;
         overflow: hidden;
@@ -115,6 +116,11 @@
         display: -webkit-box;
         -webkit-line-clamp: 6; 
         -webkit-box-orient: vertical;
+
+        a {
+            color: $red;
+            text-decoration: underline;
+        }
     }
 
     &__arrows {
@@ -143,7 +149,17 @@
         width: 2.8vw;
         height: 2.8vw;
     }
+
+    .swiper-lazy-preloader{
+        width: 30px;
+        height: 30px;
+    }
 }
+
+.swiper-container {
+    --swiper-theme-color:#590000;
+}
+
 .team-relizes__hidden {
     display: none;
 }
@@ -169,6 +185,9 @@
         &__arrow-icon {
             width: 3.2vw;
             height: 3.2vw;
+        }
+        &__description {
+            line-height: normal;
         }
     }
 }
@@ -208,7 +227,7 @@
     
         &__description {
             font-size: 1.6vw;
-            margin-top: 1.4vw;
+            margin-top: 1vw;
         }
     }
     .relizes__search {

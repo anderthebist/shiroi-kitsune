@@ -6,6 +6,7 @@ ratings.forEach((rating) => {
 
     const raitingActive = rating.querySelector(".rating__active");
     const raitingValue = rating.querySelector(".rating__value");
+    const raitingUser = rating.querySelector(".rating__user");
     
     if(!rating.dataset || !raitingActive || !raitingValue) return;
     changeRatingValue();
@@ -38,11 +39,13 @@ ratings.forEach((rating) => {
                 rating.classList.add("rating_hidden");
                 const resultMark = await setMark(markData);
 
-                changeRatingValue(resultMark)
+                changeRatingValue(resultMark);
+
+                raitingUser.innerHTML = `Ваша оценка: ${mark}`;
                 raitingValue.innerHTML = resultMark;
                 rating.classList.remove("rating_hidden");
 
-                rating.dataset.marked = true;
+                //rating.dataset.marked = true;
             } catch(e) {
                 throw new Error(e);
             }

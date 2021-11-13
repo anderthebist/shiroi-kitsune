@@ -30,6 +30,21 @@ const relizeSwiper = new Swiper('.relize-slider',{
     }
 });
 
+const alertImage = document.querySelector("#message_image_alert");
+const alertImageBtn = alertImage.querySelector("#message_image_btn");
+
+alertImageBtn.addEventListener("click", () => {
+    alertImage.classList.remove("modal_active");
+})
+
+function setMessageAlert(text) {
+    const alertMessage = alertImage.querySelector("#message_image");
+
+    if(!alertMessage) return;
+    alertImage.classList.add("modal_active");
+    alertMessage.innerHTML = text;
+}
+
 const uploadImage = document.querySelector("#upload_image");
 const profileImage = document.querySelector("#profile_image");
 const actionUserImage = document.querySelector("#action_user-image");
@@ -43,21 +58,28 @@ uploadImage.addEventListener("change", async (event) => {
         formData.append("image", file);
 
         const image = await uploadUserImage(formData);
-        const path = getUserImagePath(`/images/users/${image}`);
+        const path = getAssetPath(`/images/users/${image}`);
 
-        uploadImage.disabled = false;
         if(profileImage && actionUserImage) {
             profileImage.src = path;
             actionUserImage.src = path; 
         }
     } catch(e) {
         throw new Error(e);
+    } finally {
+        uploadImage.disabled = false;
+        uploadImage.value = "";
     }
 })
 
 const uploadUserImage = async (data) => {
     const imageData = await instance.post(`/users/upload_image`, data);
 
+    if(imageData.resultCode == 1) {
+        console.log(imageData);
+        setMessageAlert(imageData.errors[0]);
+        throw new Error(imageData.errors[0]);
+    }
     return imageData.image;
 }
 
@@ -81,7 +103,7 @@ editAlert.addEventListener("submit", async (event) => {
         editBtn.classList.add("edit-alert__btn_hidden");
         const newName = await editNameUser(data);
         
-        window.location.href = `${APP_PATH}/users/${newName}`; 
+        window.location.href = getAssetPath(`/users/${newName}`); 
     } catch(e) {
         throw new Error(e);
     }

@@ -53,9 +53,28 @@
         font-size: 14px;
         cursor: pointer;
     }
+
+    &__clear {
+        width: 20px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        color: $red;
+        padding: 0 10px;
+        background: $gray;
+        border-radius: 50%;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
     &__btn-icon {
         width: 20px;
         margin-right: 5px;
+    }
+
+    &__submiting {
+        display: flex;
+        justify-content: space-between;
     }
 }
 
@@ -79,7 +98,7 @@
             margin-left: 0;
         }
         &__btn {
-            width: 15%;
+            width: 100px;
             height: 35px;
         }
     }
@@ -142,15 +161,22 @@
             z-index: 40;
         }
         &__btn {
-            width: 100%;
             margin: 0;
+        }
+        &__clear {
+            height: 35px;
         }
     }
 }
 @media (max-width: 415px) {
     .filter {
-
         .select {
+            width: 100%;
+        }
+        &__submiting {
+            width: 100%;
+        }
+        &__btn {
             width: 100%;
         }
     }

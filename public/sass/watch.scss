@@ -1,6 +1,7 @@
 @import "./style";
 @import "./elements/action_bar";
 @import "./elements/context-panel";
+@import "./elements/head_page";
 
 .back-img {
     width: calc(100% - 280px);
@@ -22,6 +23,19 @@
 .main {
     background: rgba(0,0,0,.85);
     min-height: 100vh;
+}
+
+.relize-head {
+    margin-bottom: 15px;
+
+    &__title {
+        margin-left: 35px;
+        overflow: hidden;
+        text-align: center;
+        display: -webkit-box;
+        -webkit-line-clamp: 1; 
+        -webkit-box-orient: vertical;
+    }
 }
 
 .player {
@@ -132,6 +146,20 @@
 
     .swiper-slide {
         width: 60px;
+    }
+}
+
+.admin-settings {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+
+    .btn {
+        margin-top: 10px;
+
+        &:first-child {
+            margin-right: 10px;
+        }
     }
 }
 
@@ -401,6 +429,7 @@
 }
 
 @media (max-width: 468px) {
+
     .player {
         &__bottom {
             height: 45px;
@@ -437,6 +466,14 @@
     .alert-coment {
         font-size: 4vw;
         padding: 25px 0;
+    }
+}
+
+@media (max-width: 415px) {
+    .relize-head {
+        &__title {
+            margin-left: 20px;
+        }
     }
 }
 

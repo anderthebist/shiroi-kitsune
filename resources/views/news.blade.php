@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', "Главная")
+@section('title', "Новости")
 
 @push('styles')
     <link rel="stylesheet" href = {{ asset("/css/news.css") }}>
@@ -10,7 +10,7 @@
     <main class="main">
         <div class="context-panel">
             <div class="context-panel__title">
-                <h3>Новости Проекта</h3>
+                <h3>Новости</h3>
             </div>
         </div>
 

@@ -23,7 +23,7 @@ class AuthController extends Controller
                 'password.required' => "Заполните пароль",
         ]);
 
-        $user = auth()->attempt($request->only('email', 'password'));
+        $user = auth()->attempt($request->only('email', 'password'), true);
         if ($validator->passes() && $user) {
             return response()->json(["resultCode"=> 0,'user' => auth()->user()]);
         }

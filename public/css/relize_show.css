@@ -52,12 +52,13 @@ img {
 
 .wrapper {
   overflow: hidden;
+  padding-left: 280px;
 }
 
 .content {
   min-height: calc(100vh - 55px);
-  width: calc(100% - 280px);
-  margin-left: 280px;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .main {
@@ -78,7 +79,11 @@ img {
   color: white;
   border-radius: 100px;
   cursor: pointer;
-  font-family: CaviarDreams;
+  font-family: CaviarDreams-Bold;
+}
+
+.btn__icon {
+  width: 11px;
 }
 
 .input {
@@ -496,9 +501,28 @@ img {
   top: 0;
 }
 
-@media (max-width: 992px) {
+.alert {
+  background: #181818;
+  width: 500px;
+  font-family: CaviarDreams;
+  border-radius: 5px;
+  padding: 15px 25px 25px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@media (min-width: 1921px) {
   .content {
-    margin-left: 0;
+    width: 90%;
+    margin: 0px auto;
+  }
+}
+
+@media (max-width: 992px) {
+  .wrapper {
+    padding-left: 0;
+  }
+  .content {
     width: 100%;
     padding-top: 55px;
   }
@@ -522,6 +546,9 @@ img {
   }
   .main {
     padding: .6vw 3vw 5vw 3vw;
+  }
+  .alert {
+    width: 90vw;
   }
 }
 
@@ -888,10 +915,7 @@ img {
 }
 
 .navbar__logo {
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
+  height: 21px;
 }
 
 .navbar__search-panel {
@@ -963,10 +987,10 @@ img {
   .action-bar {
     -webkit-transform: translateX(-100%);
             transform: translateX(-100%);
-    -webkit-transition: -webkit-transform .5s ease-in-out;
-    transition: -webkit-transform .5s ease-in-out;
-    transition: transform .5s ease-in-out;
-    transition: transform .5s ease-in-out, -webkit-transform .5s ease-in-out;
+    -webkit-transition: -webkit-transform .42s ease-in-out;
+    transition: -webkit-transform .42s ease-in-out;
+    transition: transform .42s ease-in-out;
+    transition: transform .42s ease-in-out, -webkit-transform .42s ease-in-out;
     padding-top: 55px;
   }
   .action-bar.active {
@@ -1089,11 +1113,20 @@ img {
 
 .back-img {
   width: calc(100% - 280px);
-  height: 100%;
+  height: 100vh;
   position: fixed;
   left: 280px;
   top: 0;
   z-index: 20;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .back-img img {
@@ -1104,6 +1137,7 @@ img {
   top: 0;
   -o-object-fit: cover;
      object-fit: cover;
+  z-index: 10;
 }
 
 .left-content {
@@ -1174,23 +1208,32 @@ img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   font-size: 45px;
   line-height: .75;
+  position: relative;
 }
 
 .rating__body {
+  height: 100%;
   position: relative;
   color: #fff;
 }
 
+.rating__user {
+  font-size: 14px;
+  margin-top: 15px;
+}
+
 .rating__active {
   width: 100%;
-  height: 100%;
+  height: 40px;
   position: absolute;
   top: 0;
+  bottom: 0;
   left: 0;
   overflow: hidden;
 }
@@ -1198,10 +1241,10 @@ img {
 .rating__active::before {
   content: "★★★★★";
   width: 100%;
-  height: 100%;
   position: absolute;
   left: 0;
   top: 0;
+  bottom: 0;
   color: #F34147;
 }
 
@@ -1226,7 +1269,9 @@ img {
 }
 
 .rating__value {
-  margin: 5px 0 0 10px;
+  position: absolute;
+  left: calc(100% + 5px);
+  top: 10px;
   font-size: 50%;
   line-height: 1;
 }
@@ -1244,13 +1289,14 @@ img {
 }
 
 .relize-parametrs {
-  margin: 30px 0;
+  margin: 15px 0 30px 0;
   font-family: CaviarDreams-Bold;
 }
 
 .relize-parametrs__item {
   color: #B51F26;
-  margin-bottom: 15px;
+  margin-bottom: 14px;
+  line-height: 22px;
 }
 
 .relize-parametrs__item:last-child {
@@ -1267,13 +1313,19 @@ img {
   margin-top: 5px;
 }
 
+.сomma {
+  color: #fff;
+  font-family: Arial;
+  margin-left: 2px;
+}
+
 .relize-description {
   line-height: 23px;
   margin-bottom: 50px;
 }
 
 .relize-authors {
-  padding: 15px;
+  padding: 10px 15px 15px;
   border-radius: 15px;
   background: rgba(22, 21, 29, 0.9);
   -webkit-box-sizing: border-box;
@@ -1364,6 +1416,8 @@ img {
 @media (max-width: 992px) {
   .back-img {
     width: 100%;
+    height: calc(100vh - 55px);
+    top: 55px;
     left: 0;
   }
   .show-search {

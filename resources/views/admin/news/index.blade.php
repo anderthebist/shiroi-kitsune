@@ -10,7 +10,7 @@
     <section class="content admin_content pb-3">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="table-container col-sm-12">
                     <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                         <thead>
                             <tr>
@@ -28,7 +28,7 @@
                                     <td>{{ $new->id }}</td>
                                     <td>{{ $new->title }}</td>
                                     <td>
-                                        <img src="{{"/images/news/".$new->image}}" style="max-width: 150px" alt="">
+                                        <img src="{{asset("/images/news/".$new->image)}}" style="max-width: 150px" alt="">
                                     </td>
                                     <td>
                                         <div style="overflow: hidden;
@@ -36,7 +36,7 @@
                                         display: -webkit-box;
                                         -webkit-line-clamp: 3; 
                                         -webkit-box-orient: vertical;">
-                                            {{ $new->text }}
+                                            {{ strip_tags($new->text) }}
                                         </div>
                                         
                                     </td>

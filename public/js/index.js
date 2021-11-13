@@ -1,9 +1,9 @@
 
 const swiper = new Swiper('.head-slider',{
-    //loop: true,
-    speed: 650,
+    loop: true,
+    speed: 500,
     preloadImages:false,
-    allowTouchMove: false,
+    //allowTouchMove: false,
     watchOverflow: true,
     watchSlidesVisibility: true,
     lazy:{
@@ -15,15 +15,16 @@ const swiper = new Swiper('.head-slider',{
         clickable: true
     },
     autoplay: {
-        delay: 4000,
+        delay: 6000,
         disableOnInteraction: false
     }
 });
 
 
 const relizeSwiper = new Swiper('.relize-slider',{
-    speed: 700,
+    speed: 600,
     slidesPerGroup: 2,
+    freeMode: true,
     preloadImages:false,
     lazy:{
         loadOnTransitionStart: true,

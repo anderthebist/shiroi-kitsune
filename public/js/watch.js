@@ -19,6 +19,16 @@ const swiper = new Swiper('.player__slider',{
 
 const animeId = document.querySelector("#anime_id").value;
 
+const deleteAdminBtn = document.querySelector("#delete_admin_btn");
+
+if(deleteAdminBtn) {
+    deleteAdminBtn.addEventListener("click",(event) => {
+        if(!confirm("Вы действительно хотите удалить серию")){
+            event.preventDefault();
+        }
+    })
+}
+
 // Video links
 
 const vidoe = document.querySelector("iframe#video_player");
@@ -27,15 +37,21 @@ let activeLink = 0;
 
 if(videoItems && videoItems.length > 0) {
     const seria = localStorage.getItem(`seria${animeId}`) || videoItems[0].innerHTML.trim();
+    let isSetSeria = false;
 
     videoItems.forEach((item, index) => {
-        if(item.innerHTML.trim() === seria) changeVideo(item, index);
+        if(item.innerHTML.trim() === seria) {
+            changeVideo(item, index);
+            isSetSeria = true;
+        }
 
         item.addEventListener("click", () => {
             if(!item.classList.contains("player__item_active"))
                 changeVideo(item, index);
         })
     })
+    
+    if(!isSetSeria) changeVideo(videoItems[0], 0);
 
     function changeVideo(item, index) {
         const link = item.dataset.iframeLink;
@@ -47,8 +63,19 @@ if(videoItems && videoItems.length > 0) {
             item.classList.add("player__item_active");
             activeLink = index;
 
+            if(item.dataset && item.dataset.id) changeForAdmin(item.dataset.id);
             localStorage.setItem(`seria${animeId}`,item.innerHTML.trim());
         }
+    }
+
+    function changeForAdmin(videoId) {
+        const changeAdminLink = document.querySelector("#change_admin_link");
+        const deleteAdminForm = document.querySelector("#delete_admin_form");
+
+        if(!changeAdminLink || !deleteAdminForm) return;
+
+        changeAdminLink.href = `${APP_PATH}/admin/videos/${videoId}/edit`;
+        deleteAdminForm.action = `${APP_PATH}/admin/videos/${videoId}`;
     }
 }
 // Empty coment
@@ -253,7 +280,7 @@ function newComent(data) {
     <div class="coment" data-id = "${data.id}">
         <a href="${APP_PATH}/users/${data.username}">
             <div class="coment__container-img">
-                <img class="coment__image" src="${getUserImagePath(`/images/users/${data.image}`)}" alt="">
+                <img class="coment__image" src="${getAssetPath(`/images/users/${data.image}`)}" alt="">
             </div>
         </a>
 

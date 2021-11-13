@@ -10,7 +10,7 @@
     <section class="content admin_content pb-3">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="table-container col-sm-12">
                     <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
                         <thead>
                             <tr>
@@ -29,10 +29,16 @@
                                 <tr class="odd">
                                     <td>{{ $relize->id }}</td>
                                     <td>
-                                        <img src="{{"/images/animes/".$relize->image}}" style="max-width: 75px" alt="">
+                                        <a href="{{ route("releases.show", ["release"=> $relize->original_title]) }}">
+                                            <img src="{{asset("/images/animes/".$relize->image)}}" style="max-width: 75px" alt="">
+                                        </a>
                                     </td>
-                                    <td>{{ $relize->title }}</td>
-                                    <td>{{ $relize->original_title }}</td>
+                                    <td>
+                                        <a href="{{ route("releases.show", ["release"=> $relize->original_title]) }}">
+                                            {{ $relize->title }}
+                                        </a>
+                                    </td>
+                                    <td>{{ str_replace('_', ' ', $relize->original_title) }}</td>
                                     <td>{{ $relize->mark }}</td>
                                     <td>{{ $relize->year }}</td>
                                     <td>{{ $relize->license ? "Да" : "Нет" }}</td>
@@ -42,7 +48,7 @@
                                                 Редактировать
                                             </button>
                                         </a>
-                                        <form action={{route("relizes.destroy",$relize)}} method="POST">
+                                        <form action={{route("releases.destroy",$relize)}} method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button class="delete_btn btn btn-danger">

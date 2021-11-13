@@ -21,6 +21,19 @@
     </div>
     <input type="hidden" id = "anime_id" value = "{{ $relize->id }}">
     <main class="main">
+        <a href="{{ route("releases.show", ["release"=> $relize->original_title]) }}">
+            <div class="page-head relize-head">
+                <div class="page-head__icon relize-head__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                </div>
+                <div class="page-head__title relize-head__title">
+                    {{ $relize->title }}
+                </div>
+            </div>
+        </a>
+
         @if (count($videos) > 0 || $relize->trailer)
             <div class="player">
                 <div class="player__video video">
@@ -43,7 +56,8 @@
                         <div class="player__slider swiper-container">
                             <div class="swiper-wrapper">
                                 @foreach ($videos as $key=> $video)
-                                    <div class="player__item @if(!$relize->trailer && $key === 0) player__item_active @endif swiper-slide" data-iframe-link = "{{ $video->content }}">
+                                    <div class="player__item @if(!$relize->trailer && $key === 0) player__item_active @endif swiper-slide" 
+                                    data-iframe-link = "{{ $video->content }}" data-id="{{ $video->id }}">
                                         {{ $video->number_video }}
                                     </div>
                                 @endforeach
@@ -56,6 +70,25 @@
                         </button>
                     </div>
                 @endif
+            </div>
+        @endif
+        
+        
+        @if (auth()->user() && auth()->user()->can('admin', App\Models\User::class) && count($videos) > 0)
+            <div class="admin-settings">
+                <a href="{{ route("videos.edit", ["video" => $videos[0]->id]) }}" id="change_admin_link">
+                    <button class="btn">
+                        Редактировать серию
+                    </button>
+                </a>
+                <form action={{route("videos.destroy",$videos[0])}} method="POST" id="delete_admin_form">
+                    @csrf
+                    @method('DELETE')
+
+                    <button class="btn" id="delete_admin_btn">
+                        Удалить серию
+                    </button>
+                </form>
             </div>
         @endif
 

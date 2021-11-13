@@ -41,6 +41,11 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route("index") }}" role="button">
+                        <i class="fas fa-home"></i>
+                    </a>
+                  </li>
+                <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                     <i class="fas fa-expand-arrows-alt"></i>
                     </a>
@@ -59,10 +64,10 @@
             <!-- Sidebar -->
             <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
+            <div class="user-panel mt-3 pb-3 pl-2 mb-3 d-flex">
+                <div class="admin-image image" style="padding-left: 35px;">
                     <img src={{Auth::user()->image ? asset("/images/users/".Auth::user()->image) : asset("/images/users/default-user-image.png")}}
-                     style="background: white" class="img-circle elevation-2" alt="User Image">
+                     style="background: white;flex-shrink: unset;" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
                     <a href="#" class="d-block">{{Auth::user()->name}}</a>
@@ -105,6 +110,14 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href={{route("videos.create")}} class="nav-link {{ Request::is('admin/videos') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Серии
+                        </p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href={{route("news.admin")}} class="nav-link {{ Request::is('admin/news/*') ||  Request::is('admin/news') ? 'active' : '' }}">
@@ -169,7 +182,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href={{route("users.index")}} class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}">
+                    <a href={{route("users.index")}} class="nav-link {{ Request::is('users') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Пользователи
@@ -224,9 +237,9 @@
     <script src={{ asset("/admin_resourses/dist/js/demo.js") }}></script>
 
     <script src= {{ asset("/libs/chosen/chosen.jquery.min.js") }}></script> 
-
-    <script src={{ asset("/js/admin.js") }}></script>
    <!-- <script src="/admin_resourses/dist/js/pages/dashboard.js"></script>-->
     @yield('scripts')
+
+    <script src={{ asset("/js/admin.js") }}></script>
 </body>
 </html>

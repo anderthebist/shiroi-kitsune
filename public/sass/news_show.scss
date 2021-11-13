@@ -1,6 +1,32 @@
 @import "./style";
 @import "./elements/action_bar";
 @import "./elements/context-panel";
+@import "./elements/head_page";
+
+.news-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    padding: 15px 0;
+    font-family: CaviarDreams;
+    font-size: 22px;
+    // .news-head__icon
+
+    &__icon {
+        width: 25px;
+        height: 25px;
+        flex-shrink: 0;
+    }
+
+    // .news-head__title
+
+    &__title {
+        text-decoration: underline;
+        margin-left: 15px;
+    }
+}
+
 
 .news-content {
 
@@ -50,6 +76,7 @@
         }
     }
 }
+
 @media (max-width: 415px) {
     .news-content {
     

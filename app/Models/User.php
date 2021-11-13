@@ -49,11 +49,8 @@ class User extends Authenticatable
             'id');
     }
     public function favorites() {
-        return $this->belongsToMany(
-            Anime::class,
-            'favorites',
-            'user_id',
-            'anime_id');
+        return $this->belongsToMany(Anime::class, 'favorites', 'user_id', 'anime_id')->withPivot('created_at')
+        ->orderBy('favorites.created_at', 'desc');
     }
 
     public function markes() {

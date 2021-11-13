@@ -1,0 +1,33 @@
+.page-head {
+    width: 100%;
+    display: flex;
+    color: #fff;
+    padding: 15px 0;
+    font-family: CaviarDreams;
+    font-size: 22px;
+    // .news-head__icon
+
+    &__icon {
+        width: 25px;
+        height: 25px;
+        flex-shrink: 0;
+    }
+
+    // .news-head__title
+
+    &__title {
+        text-decoration: underline;
+        margin-left: 15px;
+    }
+}
+
+@media (max-width: 415px) {
+    .page-head {
+        font-size: 5.5vw;
+
+        &__icon {
+            width: 6vw;
+            height: 6vw;
+        }
+    }
+}

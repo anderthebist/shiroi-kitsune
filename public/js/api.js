@@ -54,6 +54,4 @@ function api(url) {
     return new RequestApi(url);
 }
 
-const APP_PATH = "http://127.0.0.1:8000";
-
-const instance = api("http://127.0.0.1:8000");
+const instance = api(APP_PATH);

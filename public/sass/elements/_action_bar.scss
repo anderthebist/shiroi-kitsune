@@ -364,10 +364,7 @@
     }
 
     &__logo {
-        height: 100%;
-        position: absolute;
-        left:0;
-        top:0;
+        height: 21px;   
     }
 
     // .navbar__right
@@ -438,7 +435,7 @@
 @media (max-width: 992px) {
     .action-bar {
         transform: translateX(-100%);
-        transition: transform .5s ease-in-out;
+        transition: transform .42s ease-in-out;
         padding-top: 55px;
     }
 

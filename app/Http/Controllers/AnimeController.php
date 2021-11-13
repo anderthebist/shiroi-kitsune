@@ -78,7 +78,7 @@ class AnimeController extends Controller
         $this->authorize('admin', User::class);
         $anime = $animeService->create($request);
 
-        return redirect()->route('relizes.show', ['relize'=> $anime->original_title]);
+        return redirect()->route('releases.show', ['release'=> $anime->original_title]);
     }
 
     /**
@@ -91,9 +91,11 @@ class AnimeController extends Controller
     {
         $relize = Anime:: where('original_title', $name)->first();
         if(!$relize) return abort(404);
+        $ownMark = $markService->get_user_mark($relize->id);
 
         return view("relize_show", [
-            "relize" => $relize
+            "relize" => $relize,
+            "ownMark"=> $ownMark
         ]);
     }
 
@@ -143,7 +145,7 @@ class AnimeController extends Controller
         $this->authorize('admin', User::class);
         $updating = $animeService->update($request, $id);
 
-        return redirect()->route('relizes.show', ['relize'=> $updating->original_title]);
+        return redirect()->route('releases.show', ['release'=> $updating->original_title]);
     }   
 
     /**

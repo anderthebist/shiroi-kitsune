@@ -26,6 +26,14 @@
         z-index: 35;
     }
 
+    .select__content_active ~ .select__dropdown {
+        display: block;
+    }
+
+    .select__content_active .select__arrow {
+        transform: rotate(180deg);
+    }
+
     &__dropdown {
         width: 100%;
         max-height: 300px;
@@ -38,10 +46,10 @@
         left:0;
         padding-top: 13px;
         z-index: 30;
-
+        /*
         &_active {
             display: block;
-        }
+        }*/
         &::-webkit-scrollbar { width: 3px; height: 3px;background: rgba(0,0,0,0);}
         &::-webkit-scrollbar-thumb { width: 3px; background-color: gray; }
     }
@@ -70,6 +78,8 @@
 
     &__arrow {
         width: 20px;
+        transform: rotate(0deg);
+        transition: transform .2s linear;
         color: rgba(255, 255, 255, 0.7);
     }
 }

@@ -47,17 +47,33 @@ class UserController extends Controller
     public function show($name)
     {
         $user = User:: where("name", $name)->first();
+        if(!$user) return abort(404);
         $comments = $user->coments;
+        $favorites = $user->favorites()->paginate(6);
 
         return view("user",[
             "user"=> $user,
-            "comments"=> $comments
+            "comments"=> $comments,
+            "favorites"=> $favorites
         ]);
     }
 
-    public function upload(UploadImageRequest $request, ImageService $imageService) {
+    public function upload(Request $request, ImageService $imageService) {
         $user = auth()->user();
         $this->authorize('update', $user);
+
+        $validator = Validator::make($request->all(),[
+            'image'=> ['required', 'mimes:jpg,png', 'max:2048']
+            ], 
+            [
+                'image.required' => 'Внесите картинку',
+                'image.mimes' => "Файл картинки не в нужном формате: png, jpg",
+                'image.max' => "Максимальный размер картинки не долже привышать 2 мб",
+        ]);
+
+        if (!$validator->passes()) {
+            return response()->json(["resultCode"=> 1,'errors'=> $validator->errors()->all()]);
+        }
         
         $image = $imageService->upload($request->image, 'images/users');
         $imageService->delete('/images/users/'.$user->image);

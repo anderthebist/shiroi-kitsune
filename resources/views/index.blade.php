@@ -19,7 +19,7 @@
 @section('content')
     @if (count($header) > 0)
         <header class="header">
-            <form action="{{ route("relizes.index") }}"  method="GET" class="header__search search">
+            <form action="{{ route("releases.index") }}"  method="GET" class="header__search search">
                 <button class="search__btn">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="h-8 w-8" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -49,9 +49,9 @@
                                     {{ $head->description }}
                                 </p>
                                 <div class="head-slider__btns">
-                                    <a href="{{ route("relizes.show", ["relize"=> $head->original_title]) }}">
+                                    <a href="{{ route("releases.show", ["release"=> $head->original_title]) }}">
                                         <button class="head-slider__btn btn">
-                                            <img class="head-slider__btn-icon" src="./images/play-watch.png" alt="">
+                                            <img class="btn__icon" src="{{ asset("/images/assets/play-watch.png") }}" alt="">
                                             Смотреть
                                         </button>
                                     </a>
@@ -75,7 +75,7 @@
                 <h3>Рекомендуемые</h3>
             </div>
             <div class = "context-panel__right">
-                <a class="context-panel__link link" href={{ route('relizes.index') }}>
+                <a class="context-panel__link link" href={{ route('releases.index') }}>
                     Посмотреть все
                 </a>
                 <div class="context-panel__arrows relize-arrows">
@@ -104,7 +104,7 @@
                 <h3>Новые серии</h3>
             </div>
             <div class = "context-panel__right">
-                <a class="context-panel__link link" href={{ route('relizes.index') }}>
+                <a class="context-panel__link link" href={{ route('releases.index') }}>
                     Посмотреть все
                 </a>
             </div>
@@ -116,7 +116,7 @@
 
         <div class="context-panel">
             <div class="context-panel__title">
-                <h3>Новости Проекта</h3>
+                <h3>Новости</h3>
             </div>
             <div class = "context-panel__right">
                 <a class="context-panel__link link" href={{ route('news.index') }}>

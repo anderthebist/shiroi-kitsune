@@ -9,7 +9,7 @@
 @section('content')
     <main class="main">
         <div class="auth-block">
-            <div class="auth-block__forms">
+            <div class="auth-block__forms forget__block">
                 <form action={{ route('reset_password_process') }} method="POST" class="auth-block__form">
                     @csrf
                     <h2 class="auth-block__title">
